@@ -1,0 +1,25 @@
+@startuml
+
+abstract class Slot {
+    + type: String,
+    + markSlotFree(recourceId:int):void,
+    + markSlotBusy(recourceId:int):void,
+    + findFreeSlot():int,
+}
+
+class SpaceSlot {}
+
+class TimeSlot {}
+
+class ResourceAllocator {
+    INVALID_RESOURCE_ID:int,
+    + allocate(slot:Slot):int,
+    + free(slot:Slot,recourceId:int):void
+}
+
+Slot <|-- SpaceSlot
+Slot <|-- TimeSlot
+
+ResourceAllocator ..> Slot
+
+@enduml
